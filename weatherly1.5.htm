@@ -1,0 +1,187 @@
+<html>
+
+<head>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="weatherly.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
+    <link type="text/css" href="weatherly.css" rel="stylesheet" />
+    <link type="text/css" href="weatherTemplate.css" rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <script data-cfasync="false" type="text/javascript" src="//filamentapp.s3.amazonaws.com/bd0fb5033f2576166c03cfc1612cbc44.js"
+        async="async"></script>
+    <style>
+        html,
+        body {
+            height: 50%;
+            margin-right: 30px;
+            padding: 0;
+        }
+        
+        #map {
+            height: 70%;
+            margin-right: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Nav bar  -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                <a class="navbar-brand" href="#">Weather.ly 1.5</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="address" placeholder="Enter Address or Zip" />
+                    </div>
+                    <button type="button" id="lookupLocation" class="btn btn-success"> <span class="glyphicon glyphicon-plus"></button>
+                </form>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Severe Weather Alerts<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <div id="wxhop_widget">
+                                    <script src="http://weatherhop.com/widget.js"></script>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://www.spc.noaa.gov/" target="_blank">Storm Prediction Center</a></li>
+                        <li>
+                            <div class="fb-share-button navbar-brand" data-href="" data-layout="button_count" data-mobile-iframe="true">
+                                <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse"><img src="http://picresize.com/picresize-assets/gfx/share-facebook.png" /></a>
+                        </li>
+                    </ul>
+
+                    </div>
+            </div>
+    </nav>
+
+    <div class="jumbotron textType">
+
+
+        <h1>Weather for your Location!</h1>
+
+    </div>
+    <div class="row col-xs-8 col-sm-6 col-md-4 col-lg-3 ">
+    </div>
+    <div class="row" style="height:40px">
+    </div>
+
+    <div class="container">
+        <div class="row ">
+            <div class="container" id="newCard2">
+            </div>
+            <div class="hidden">
+
+                <div class="container " id="newCard">
+
+                    <div id="weatherCard" class=" col-xs-10 col-sm-6 col-md-4 col-lg-3 @@class@@ allCards a">
+                        <input type="button" class="btn btn-danger " value="X" onclick="removeDummy()" />
+                        <div class="row " style=" text-align:center">
+                            <div class="col-md-12">
+                                <h3>@@City@@</h3>
+
+                            </div>
+
+
+                            <div class="row">
+                                <h1>
+                                    @@lrgDegree@@
+                                </h1>
+                            </div>
+                            <div class="row" style="height:20px">
+                                <div class="col-md-4"></div>
+                                <div id="iconBox" class="col-md-4"></div>
+                                <div class="col-md-4"></div>
+
+                            </div>
+                            <div class="row" style="height:20px; text-align:center">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <h2 sytle="margin-left:3px">@@cond@@</h2>
+                                </div>
+                                <div class="col-md-4"></div>
+
+                            </div>
+                            <div class="row" style="height:20px"></div>
+
+                            <div class="row" style="height:50px"></div>
+                            <div class="row">
+                                <hr style="width:280px" />
+                            </div>
+                            <div class="row" style="height:10px">
+
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4 col-sm-4 col-md-4  col-lg-4">
+                                    <h5>@@minTemp@@</h5>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4  col-lg-4">
+                                    <h5>@@rain%@@</h5>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4  col-lg-4">
+                                    <h5>@@maxTemp@@</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4 col-sm-4 col-md-4  col-lg-4">
+                                    <h5>@@Min@@</h5>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4  col-lg-4">
+                                    <h5>@@rainChance@@</h5>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4  col-lg-4">
+                                    <h5>@@Max@@</h5>
+
+                                </div>
+                                <div id="map@@num@@" class=" @@mapClass@@" style="position:realitive; left:13px; width:285px ;height:250px; border: 2px solid black;
+    border-radius: 4px">
+
+                                </div>
+                                
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Ending-->
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyxOE_ge1X-ru7Pqr0jXZBm7bmCnpH1G4&callback=initMap" async
+                    defer></script>
+
+
+</body>
+
+
+
+
+
+
+
+
+
+</html>
